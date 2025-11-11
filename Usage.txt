@@ -1,0 +1,22 @@
+uv run python -m src.cli numeric normalize 1 2 3 --min 0 --max 1
+uv run python -m src.cli numeric standardize 10 20 30
+uv run python -m src.cli numeric clip --min 0 --max 1 -- -1 0.5 2
+uv run python -m src.cli numeric log 1 10 100
+uv run python -m src.cli numeric convert-int 1 "2" "a" 3.5 "4.0"
+
+uv run python -m src.cli clean remove-missing 1 "" 2 None 3
+uv run python -m src.cli clean fill-missing 1 "" None 3 --fill 0
+uv run python -m src.cli clean unique 1 2 2 3 3 3
+
+
+uv run python -m src.cli text tokenize "Hola mundo! Esto es una prueba."
+uv run python -m src.cli text remove-punct "Hola@# mundo!!! 123."
+uv run python -m src.cli text remove-stops "hola esto es una prueba" --stopwords esto --stopwords es --stopwords una
+
+uv run python -m src.cli struct flatten "[[1,2],[3,4],[5]]"
+uv run python -m src.cli struct shuffle 1 2 3 4 5 --seed 42
+
+
+
+
+uv run python -m pytest -v  --cov=src

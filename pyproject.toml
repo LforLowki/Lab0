@@ -1,0 +1,25 @@
+[project]
+name = "lab0"
+version = "0.1.0"
+description = "Fundamentals of Continuous Integration - Lab 0"
+authors = [{ name = "Your Name" }]
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    "click",
+    "pytest",
+    "pytest-cov",
+    "pylint",
+    "black"
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.pylint]
+disable = ["C0114", "C0115", "C0116"]
+
+[tool.pytest.ini_options]
+addopts = "-v --cov=src"
