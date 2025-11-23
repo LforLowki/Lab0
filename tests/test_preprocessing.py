@@ -1,5 +1,5 @@
 import pytest
-from src import preprocessing as pp
+from lab1 import preprocessing as pp
 
 
 @pytest.fixture

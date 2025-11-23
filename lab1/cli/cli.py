@@ -1,6 +1,8 @@
 import ast
 import click
-from src.preprocessing import (
+from pathlib import Path
+from lab1.logic.predictor import predict_class, resize_image, get_image_size
+from lab1.preprocessing import (
     remove_missing as remove_missing_func,
     fill_missing as fill_missing_func,
     remove_duplicates as remove_duplicates_func,
@@ -21,6 +23,39 @@ from src.preprocessing import (
 def cli():
     """Main CLI group for data preprocessing commands."""
     pass
+
+
+# =====================================================================
+# PREDICT AND RESIZE FROM THE DATA
+# =====================================================================
+@cli.command("predict")
+@click.argument("image_path", type=click.Path(exists=True))
+def predict(image_path):
+    """Predict class for IMAGE_PATH (dummy random predictor)."""
+    p = Path(image_path)
+    with p.open("rb") as f:
+        data = f.read()
+    cls = predict_class(data)
+    w, h = get_image_size(data)
+    click.echo(f"predicted_class: {cls}")
+    click.echo(f"original_size: {w}x{h}")
+
+
+@cli.command("resize")
+@click.argument("image_path", type=click.Path(exists=True))
+@click.argument("width", type=int)
+@click.argument("height", type=int)
+@click.option("-o", "--out", type=click.Path(), default=None, help="Output path")
+def resize(image_path, width, height, out):
+    """Resize image to WIDTH HEIGHT and save (overwrites if out exists)."""
+    p = Path(image_path)
+    out_path = Path(out) if out else p.with_name(f"{p.stem}_{width}x{height}{p.suffix}")
+    with p.open("rb") as f:
+        data = f.read()
+    resized = resize_image(data, width, height)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_bytes(resized)
+    click.echo(f"Saved resized image to: {out_path}")
 
 
 # =====================================================================
