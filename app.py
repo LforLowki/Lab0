@@ -4,7 +4,7 @@ from io import BytesIO
 
 # Replace this with your deployed Render URL:
 # Example: "https://your-render-service.onrender.com"
-RENDER_URL = "https://api.render.com/deploy/srv-d4k9lffpm1nc73ahga2g?key=GK94R76-9cA"
+RENDER_URL = "https://lab1-api-latest.onrender.com"
 
 
 def predict(image):
