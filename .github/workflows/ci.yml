@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -20,23 +21,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          python -m venv .venv
-          . .venv/bin/activate
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install black pylint pytest pytest-cov
 
       - name: Format (black)
-        run: |
-          . .venv/bin/activate
-          black lab1 tests
+        run: black lab1 tests
 
       - name: Lint (pylint)
-        run: |
-          . .venv/bin/activate
-          pylint lab1 || true
+        run: pylint lab1 || true
 
       - name: Run tests
-        run: |
-          . .venv/bin/activate
-          pytest -q --cov=lab1
-
+        run: pytest -q --cov=lab1
