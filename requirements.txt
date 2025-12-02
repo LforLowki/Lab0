@@ -1,6 +1,9 @@
+gradio
+httpx
 fastapi
-uvicorn
+uvicorn[standard]
 pillow
 python-multipart
 jinja2
-httpx
+click
+gradio
