@@ -1,9 +1,4 @@
 gradio
-httpx
 fastapi
-uvicorn[standard]
 pillow
 python-multipart
-jinja2
-click
-gradio
