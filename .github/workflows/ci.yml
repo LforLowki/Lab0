@@ -28,14 +28,15 @@ jobs:
       - name: Format (black)
         run: |
           . .venv/bin/activate
-          black src tests
+          black lab1 tests
 
       - name: Lint (pylint)
         run: |
           . .venv/bin/activate
-          pylint src || true
+          pylint lab1 || true
 
       - name: Run tests
         run: |
           . .venv/bin/activate
-          pytest -q --cov=src
+          pytest -q --cov=lab1
+
